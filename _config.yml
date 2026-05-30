@@ -44,10 +44,10 @@ defaults:
 # ================================================
 # Jekyll 插件
 # ================================================
-# plugins:
-#   - jekyll-feed
-#   - jekyll-sitemap
-#   - jekyll-seo-tag
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
 # ================================================
 # Markdown 渲染设置
