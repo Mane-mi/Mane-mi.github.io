@@ -1,0 +1,38 @@
+---
+layout: default
+title: 归档
+---
+
+<div class="container container-narrow">
+    <header class="page-header">
+        <h1>文章归档</h1>
+        <p>按时间线整理的所有文章</p>
+    </header>
+
+    <div class="archive-list">
+        {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+
+        {% for year in posts_by_year %}
+        <div class="archive-year">
+            <h2>{{ year.name }}年</h2>
+
+            <ul class="archive-posts">
+                {% for post in year.items %}
+                <li class="archive-post">
+                    <span class="archive-post-date">{{ post.date | date: "%m月%d日" }}</span>
+                    <span class="archive-post-title">
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+
+        {% if site.posts.size == 0 %}
+        <div class="text-center" style="padding: 4rem 0;">
+            <p style="color: var(--color-text-light); font-size: 1.1rem;">暂无文章归档，敬请期待...</p>
+        </div>
+        {% endif %}
+    </div>
+</div>

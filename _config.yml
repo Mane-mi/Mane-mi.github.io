@@ -1,0 +1,72 @@
+# ================================================
+# 小清新治愈风博客配置
+# ================================================
+
+# 网站基本信息
+title: "治愈小站"
+description: "一个温暖的小清新博客，记录生活中的点滴美好"
+author: "Mane-mi"
+
+# 域名和链接设置
+url: "https://mane-mi.github.io"
+baseurl: ""
+
+# 时区设置
+# timezone: "Asia/Shanghai"
+
+# ================================================
+# 集合配置
+# ================================================
+collections:
+  authors:
+    output: true
+
+# ================================================
+# 默认 front matter
+# ================================================
+defaults:
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      layout: "author"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# ================================================
+# Jekyll 插件
+# ================================================
+# plugins:
+#   - jekyll-feed
+#   - jekyll-sitemap
+#   - jekyll-seo-tag
+
+# ================================================
+# Markdown 渲染设置
+# ================================================
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+# ================================================
+# 留空以便后续扩展
+# ================================================
+future: true
+show_drafts: false

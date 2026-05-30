@@ -1,0 +1,705 @@
+/* ================================================
+   小清新治愈风博客样式
+   主题：奶白/米白 + 浅粉/薄荷绿/淡蓝
+   ================================================ */
+
+/* ================================================
+   1. CSS 变量定义 - 统一管理颜色和样式
+   ================================================ */
+:root {
+  /* 主色调 - 奶白/米白底色 */
+  --color-bg: #FDFCFB;
+  --color-bg-secondary: #F9F7F5;
+  --color-bg-card: #FFFFFF;
+
+  /* 柔和彩色 */
+  --color-primary: #A8D8EA;      /* 淡蓝 */
+  --color-secondary: #F8B4C4;    /* 浅粉 */
+  --color-accent: #B5EAD7;       /* 薄荷绿 */
+  --color-accent-alt: #FFEAA7;   /* 淡黄 */
+
+  /* 文字颜色 */
+  --color-text: #4A4A4A;
+  --color-text-light: #7A7A7A;
+  --color-text-lighter: #A0A0A0;
+
+  /* 强调色 */
+  --color-link: #7FCDCD;
+  --color-link-hover: #5BB5B5;
+
+  /* 深色模式颜色 */
+  --color-dark-bg: #2D3436;
+  --color-dark-bg-secondary: #363B3D;
+  --color-dark-bg-card: #3D4547;
+  --color-dark-text: #E8E8E8;
+  --color-dark-text-light: #B0B0B0;
+  --color-dark-link: #A8D8EA;
+
+  /* 阴影 */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+  /* 圆角 */
+  --radius-small: 8px;
+  --radius-medium: 12px;
+  --radius-large: 20px;
+
+  /* 间距 */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+
+  /* 字体 */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-mono: "Fira Code", "Consolas", monospace;
+
+  /* 过渡动画 */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.4s ease;
+}
+
+/* 深色模式支持 */
+[data-theme="dark"] {
+  --color-bg: var(--color-dark-bg);
+  --color-bg-secondary: var(--color-dark-bg-secondary);
+  --color-bg-card: var(--color-dark-bg-card);
+  --color-text: var(--color-dark-text);
+  --color-text-light: var(--color-dark-text-light);
+  --color-link: var(--color-dark-link);
+}
+
+/* ================================================
+   2. 基础重置和全局样式
+   ================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.8;
+  min-height: 100vh;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* 链接样式 */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+/* 图片样式 */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-medium);
+}
+
+/* 列表样式 */
+ul, ol {
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ================================================
+   3. 布局容器
+   ================================================ */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-wide {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* ================================================
+   4. 导航栏样式
+   ================================================ */
+.site-nav {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: var(--spacing-sm) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.site-nav.scrolled {
+  box-shadow: var(--shadow-soft);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.nav-logo:hover {
+  color: var(--color-link);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--spacing-md);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-small);
+  transition: all var(--transition-fast);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-link);
+  background-color: var(--color-bg-secondary);
+}
+
+/* 移动端导航 */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  transition: var(--transition-fast);
+}
+
+/* ================================================
+   5. 主内容区域
+   ================================================ */
+.main-content {
+  min-height: calc(100vh - 200px);
+  padding: var(--spacing-xl) 0;
+}
+
+/* 页面标题 */
+.page-header {
+  text-align: center;
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.page-header p {
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+}
+
+/* ================================================
+   6. 文章卡片样式
+   ================================================ */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.post-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-large);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.875rem;
+  color: var(--color-text-lighter);
+}
+
+.post-card-date {
+  color: var(--color-text-lighter);
+}
+
+.post-card-title {
+  font-size: 1.35rem;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
+}
+
+.post-card-title a {
+  color: var(--color-text);
+}
+
+.post-card-title a:hover {
+  color: var(--color-link);
+}
+
+.post-card-excerpt {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-light);
+  font-size: 0.8rem;
+  border-radius: var(--radius-large);
+  transition: all var(--transition-fast);
+}
+
+.tag:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ================================================
+   7. 文章详情页样式
+   ================================================ */
+.post {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.post-header {
+  text-align: center;
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+.post-header h1 {
+  font-size: 2.25rem;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.3;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+}
+
+.post-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.post-content {
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.post-content p {
+  margin-bottom: var(--spacing-md);
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+/* 文章中的代码块 */
+.post-content code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--color-bg-secondary);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-small);
+  color: var(--color-text);
+}
+
+.post-content pre {
+  background-color: #2D3436;
+  border-radius: var(--radius-medium);
+  padding: var(--spacing-md);
+  overflow-x: auto;
+  margin: var(--spacing-md) 0;
+}
+
+.post-content pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #E8E8E8;
+}
+
+/* 文章底部 */
+.post-footer {
+  margin-top: var(--spacing-xxl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-bg-secondary);
+}
+
+/* ================================================
+   8. 标签页样式
+   ================================================ */
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.tags-cloud .tag {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 1rem;
+  background-color: var(--color-bg-secondary);
+}
+
+.tag-size-1 { font-size: 0.8rem; }
+.tag-size-2 { font-size: 0.9rem; }
+.tag-size-3 { font-size: 1rem; }
+.tag-size-4 { font-size: 1.1rem; }
+.tag-size-5 { font-size: 1.2rem; }
+
+/* ================================================
+   9. 关于页样式
+   ================================================ */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.about-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: white;
+  box-shadow: var(--shadow-medium);
+}
+
+.about-intro {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.about-intro h2 {
+  margin-bottom: var(--spacing-md);
+}
+
+.about-intro p {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.05rem;
+}
+
+/* ================================================
+   10. 页脚样式
+   ================================================ */
+.site-footer {
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-xl) 0;
+  margin-top: var(--spacing-xxl);
+  text-align: center;
+}
+
+.footer-content {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-links a {
+  color: var(--color-text-light);
+}
+
+.footer-links a:hover {
+  color: var(--color-link);
+}
+
+/* ================================================
+   11. 归档页样式
+   ================================================ */
+.archive-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.archive-year {
+  margin-bottom: var(--spacing-xl);
+}
+
+.archive-year h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 2px solid var(--color-bg-secondary);
+}
+
+.archive-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.archive-post {
+  display: flex;
+  align-items: baseline;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px dashed var(--color-bg-secondary);
+}
+
+.archive-post-date {
+  color: var(--color-text-lighter);
+  font-size: 0.9rem;
+  min-width: 100px;
+}
+
+.archive-post-title {
+  font-size: 1.05rem;
+}
+
+.archive-post-title a {
+  color: var(--color-text);
+}
+
+.archive-post-title a:hover {
+  color: var(--color-link);
+}
+
+/* ================================================
+   12. 按钮样式
+   ================================================ */
+.btn {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-large);
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  background-color: var(--color-link-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ================================================
+   13. 分页样式
+   ================================================ */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+}
+
+.pagination a,
+.pagination span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 var(--spacing-sm);
+  background-color: var(--color-bg-card);
+  color: var(--color-text);
+  border-radius: var(--radius-small);
+  transition: all var(--transition-fast);
+}
+
+.pagination a:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.pagination .current {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ================================================
+   14. 响应式设计
+   ================================================ */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg);
+    flex-direction: column;
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .post-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .post-meta {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+}
+
+/* ================================================
+   15. 辅助类
+   ================================================ */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

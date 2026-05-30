@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+    <meta name="description" content="{{ page.excerpt | default: site.description }}">
+    <meta name="author" content="{{ site.author }}">
+
+    <!-- 链接 RSS -->
+    {% feed_meta %}
+
+    <!-- SEO 标签 -->
+    {% seo %}
+
+    <!-- 样式表 -->
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+
+    <!-- 主题颜色元标签 -->
+    <meta name="theme-color" content="#A8D8EA">
+
+    <!-- 社交媒体元标签 -->
+    {% if site.twitter_username %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@{{ site.twitter_username }}">
+    {% endif %}
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.title }}</a>
+
+            <ul class="nav-links">
+                <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>首页</a></li>
+                <li><a href="{{ '/blog.html' | relative_url }}" {% if page.url contains '/blog' %}class="active"{% endif %}>博客</a></li>
+                <li><a href="{{ '/archives.html' | relative_url }}" {% if page.url contains '/archives' %}class="active"{% endif %}>归档</a></li>
+                <li><a href="{{ '/tags.html' | relative_url }}" {% if page.url contains '/tags' %}class="active"{% endif %}>标签</a></li>
+                <li><a href="{{ '/about.html' | relative_url }}" {% if page.url contains '/about' %}class="active"{% endif %}>关于</a></li>
+            </ul>
+
+            <!-- 移动端菜单按钮 -->
+            <div class="nav-toggle" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        {{ content }}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="{{ '/' | relative_url }}">首页</a>
+                    <a href="{{ '/blog.html' | relative_url }}">博客</a>
+                    <a href="{{ '/about.html' | relative_url }}">关于</a>
+                    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+                </div>
+                <p>&copy; {{ "now" | date: "%Y" }} {{ site.author }}. 用 <a href="https://jekyllrb.com" target="_blank">Jekyll</a> 搭建，托管于 <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端导航切换
+        function toggleNav() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.site-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 深色模式切换
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 读取保存的主题
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>

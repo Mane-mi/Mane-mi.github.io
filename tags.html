@@ -1,0 +1,91 @@
+---
+layout: default
+title: 标签
+---
+
+<div class="container">
+    <header class="page-header">
+        <h1>标签</h1>
+        <p>按标签浏览所有文章</p>
+    </header>
+
+    <!-- 标签云 -->
+    <div class="tags-cloud">
+        {% for tag in site.tags %}
+        <a href="#{{ tag | first | slugize }}" class="tag">{{ tag | first }}</a>
+        {% endfor %}
+    </div>
+
+    <!-- 按标签分组 -->
+    {% for tag in site.tags %}
+    <section class="tag-section" id="{{ tag | first | slugize }}">
+        <h2 class="tag-title">{{ tag | first }}</h2>
+
+        <ul class="post-list">
+            {% for post in tag.last %}
+            <li class="post-item">
+                <span class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
+                <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endfor %}
+
+    {% if site.tags.size == 0 %}
+    <div class="text-center" style="padding: 4rem 0;">
+        <p style="color: var(--color-text-light); font-size: 1.1rem;">暂无标签，敬请期待...</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.tag-section {
+    max-width: 720px;
+    margin: var(--spacing-xl) auto;
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-soft);
+}
+
+.tag-title {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-bg-secondary);
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-item {
+    display: flex;
+    align-items: baseline;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px dashed var(--color-bg-secondary);
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-date {
+    color: var(--color-text-lighter);
+    font-size: 0.9rem;
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.post-link {
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+}
+
+.post-link:hover {
+    color: var(--color-link);
+}
+</style>
