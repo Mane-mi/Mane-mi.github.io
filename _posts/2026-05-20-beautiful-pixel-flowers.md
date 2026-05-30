@@ -18,7 +18,7 @@ reading_time: 5
 
 但是！当我们分工合作，一边聊天一边一颗颗拼豆子的时候，时间仿佛慢了下来。选豆、放豆、调整位置，每一步都让人感到无比专注和平静。
 
-![正在创作的拼豆花束](/assets/images/1.png)
+![正在创作的拼豆花束](https://neeko-copilot.bytedance.net/api/text_to_image?prompt=cute%20pixel%20art%20flower%20arrangement%20being%20created%2C%20colorful%20perler%20beads%2C%20craft%20workshop%2C%20warm%20lighting%2C%20cozy%20atmosphere%2C%20pastel%20colors&image_size=landscape_16_9)
 
 ## ⏳ 八个小时的时光
 
@@ -26,7 +26,7 @@ reading_time: 5
 
 中途我好几次觉得太累想放弃，但看到朋友们都在坚持，而且作品一点点成型，就又有了动力。
 
-![拼豆进行中](/assets/images/2.png)
+![拼豆进行中](https://neeko-copilot.bytedance.net/api/text_to_image?prompt=four%20friends%20working%20together%20on%20a%20large%20pixel%20art%20flower%20project%2C%20colorful%20beads%2C%20craft%20table%2C%20music%20notes%2C%20happy%20atmosphere%2C%20soft%20pastel%20colors&image_size=landscape_16_9)
 
 ## ✨ 成品诞生
 
@@ -40,6 +40,6 @@ reading_time: 5
 
 > 手工的意义不在于结果有多完美，而在于过程中那份专注和治愈。
 
-![完成的花束拼豆作品](/assets/images/3.png)
+![完成的花束拼豆作品](https://neeko-copilot.bytedance.net/api/text_to_image?prompt=beautiful%20completed%20pixel%20art%20flower%20bouquet%2C%20colorful%20perler%20beads%2C%20pink%20roses%2C%20purple%20lavender%2C%20black%20outline%2C%20artistic%20display%2C%20soft%20lighting%2C%20pastel%20background&image_size=landscape_16_9)
 
 感谢看到这里的你，愿你也能在生活中找到属于自己的治愈时光 💕
